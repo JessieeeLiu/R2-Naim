@@ -1,0 +1,6 @@
+name: macro_f1
+init:
+  _target_: CMC_utils.metrics.classification_metrics.macro_f1
+  average: macro # average 是初始化参数，应放在 init 内部
+ 
+set_params_function: CMC_utils.miscellaneous.do_nothing

@@ -1,0 +1,40 @@
+_target_: CMC_utils.datasets.ClassificationDataset # DO NOT CHANGE
+_convert_: all # DO NOT CHANGE
+
+name: letter_img # dataset name
+db_type: tabular # DO NOT CHANGE
+# 因为我们已经在 CSV 里把数据清洗为 0 和 1 了，所以这里可以放心地写 [0, 1]
+classes: [ 0, 1 ] 
+label_type: multiclass 
+
+task: classification # DO NOT CHANGE
+
+path: ${data_path}/tabular/classification/letter_img/letter_img.csv 
+
+columns:  
+  f0:                  float
+  f1:                  float
+  f2:                  float
+  f3:                  float
+  f4:                  float
+  f5:                  float
+  f6:                  float
+  f7:                  float
+  f8:                  float
+  f9:                  float
+  f10:                  float
+  f11:                  float
+  f12:                  float
+  f13:                  float
+  f14:                  float
+  f15:                  float
+  target:              target  # DO NOT CHANGE THE VALUE
+
+
+pandas_load_kwargs:
+  header: 0  
+  sep: ","   
+
+dataset_class:  # DO NOT CHANGE
+  _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch # DO NOT CHANGE
+  _convert_: all # DO NOT CHANGE

@@ -1,0 +1,5 @@
+params,values
+method,categorical_encode
+unique_values,"{'seismic': ['a', 'b'], 'seismoacoustic': ['a', 'b', 'c'], 'shift': ['N', 'W'], 'ghazard': ['a', 'b', 'c']}"
+nan_as_category,False
+fill_value,

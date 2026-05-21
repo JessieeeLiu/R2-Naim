@@ -1,0 +1,19 @@
+params,values
+_target_,CMC_utils.models.TABTransformer
+_convert_,all
+cat_idxs,[]
+categories,[]
+num_continuous,16
+dim,32
+dim_out,2
+depth,6
+heads,8
+attn_dropout,0.1
+ff_dropout,0.1
+mlp_hidden_mults,"[4, 2]"
+mlp_act,{'_target_': 'torch.nn.ReLU'}
+best_epoch,90
+best_loss,0.12179961580783129
+best_performance,0.9607
+last_epoch,141
+early_stop,True

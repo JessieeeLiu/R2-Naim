@@ -1,0 +1,5 @@
+params,values
+method,categorical_encode
+unique_values,"{'job': ['admin.', 'blue-collar', 'entrepreneur', 'housemaid', 'management', 'retired', 'self-employed', 'services', 'student', 'technician', 'unemployed', 'unknown'], 'marital': ['divorced', 'married', 'single', 'unknown'], 'education': ['basic.4y', 'basic.6y', 'basic.9y', 'high.school', 'illiterate', 'professional.course', 'university.degree', 'unknown'], 'default': ['no', 'unknown', 'yes'], 'housing': ['no', 'unknown', 'yes'], 'loan': ['no', 'unknown', 'yes'], 'contact': ['cellular', 'telephone'], 'month': ['apr', 'aug', 'dec', 'jul', 'jun', 'mar', 'may', 'nov', 'oct', 'sep'], 'day_of_week': ['fri', 'mon', 'thu', 'tue', 'wed'], 'poutcome': ['failure', 'nonexistent', 'success']}"
+nan_as_category,False
+fill_value,

@@ -1,0 +1,4 @@
+_target_: CMC_utils.models.train_test.torch_model.losses.CBAdaptiveFocalLoss
+beta: 0.9
+gamma_min: 0.3
+gamma_max: 2.5

@@ -1,0 +1,270 @@
+data_path: ./datasets
+output_path: ./outputs
+experiment_name: AMD1_naim_no_imputation
+pipeline: simple
+seed: 42
+verbose: 1
+continue_experiment: false
+paths:
+  experiment: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation
+  cv: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/cross_validation
+  preprocessing:
+    numerical: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/preprocessing/numerical_preprocessing
+    categorical: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/preprocessing/categorical_preprocessing
+    imputer: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/preprocessing/imputer
+  model: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/saved_models
+  predictions: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/predictions
+  results: /home/liuhaoxuan/NAIM_labelweight+jingiam/outputs/AMD1_naim_no_imputation/results
+db:
+  _target_: CMC_utils.datasets.ClassificationDataset
+  _convert_: all
+  name: AMD1
+  db_type: tabular
+  classes:
+  - 0
+  - 1
+  label_type: multiclass
+  task: classification
+  path: ${data_path}/tabular/classification/eyes/AMD1.csv
+  columns:
+    FINAL_WEIGHT: int
+    gender: category
+    age: int
+    race: category
+    Educational Level: category
+    LBXWBCSI: float
+    LBXPLTSI: int
+    LBDNENO: float
+    LBDLYMNO: float
+    LBDMONO: float
+    LBXMCVSI: float
+    LBXMCHSI: float
+    BMXWAIST: float
+    BMXWT: float
+    BMXHT: float
+    BMXBMI: float
+    WWI: float
+    WHtR: float
+    PLR: float
+    NLR: float
+    MHR: float
+    SII: float
+    SIRI: float
+    PIV: float
+    Label: target
+  pandas_load_kwargs:
+    na_values: []
+    header: 0
+  dataset_class:
+    _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch
+    _convert_: all
+test_cv:
+  method: stratifiedkfold
+  n_splits: 5
+  shuffle: true
+  random_state: ${seed}
+val_cv:
+  method: holdout
+  train_size: null
+  test_size: 0.2
+  stratify: true
+  random_state: ${seed}
+preprocessing:
+  numerical:
+    method: normalize
+    axis: 0
+    all_columns: false
+  categorical:
+    method: categorical_encode
+    nan_as_category: false
+    fill_value: null
+  imputer:
+    method: no_imputation
+    features: all
+    sparse: auto
+    error_on_new: true
+    concat_mask: false
+dl_params:
+  max_epochs: 1500
+  min_epochs: 50
+  batch_size: 32
+  init_learning_rate: 0.001
+  end_learning_rate: 1.0e-08
+  learning_rates:
+  - 0.001
+  - 0.0001
+  - 1.0e-05
+  - 1.0e-06
+  - 1.0e-07
+  early_stopping_patience: 50
+  scheduler_patience: 25
+  performance_tolerance: 0.001
+  verbose: ${verbose}
+  verbose_batch: 0
+  device: cuda
+ml_params:
+  n_estimators: 100
+model:
+  name: naim
+  framework: torch
+  model_type: tabular
+  is_SOTA: false
+  model_tasks:
+  - classification
+  label_types:
+  - binary
+  - categorical
+  set_params_function:
+    _target_: CMC_utils.models.set_naim_params
+  init_params:
+    _target_: CMC_utils.models.NAIM
+    _convert_: all
+    input_size: null
+    output_size: null
+    cat_idxs: null
+    cat_dims: null
+    d_token: 6
+    embedder_initialization: normal
+    bias: false
+    mask_type: 2
+    missing_value: ~inf
+    num_heads: 3
+    feedforward_dim: 1000
+    dropout_rate: 0.0
+    activation: relu
+    num_layers: 6
+    extractor: false
+  fit_params: {}
+  train_function:
+    _target_: CMC_utils.models.train_torch_model
+  test_function:
+    _target_: CMC_utils.models.test_torch_model
+  save_function:
+    _target_: CMC_utils.save_load.save_model
+  file_extension: pth
+  load_function:
+    _target_: CMC_utils.save_load.load_model
+train:
+  dl_params:
+    max_epochs: 1500
+    min_epochs: 50
+    batch_size: 32
+    init_learning_rate: 0.001
+    end_learning_rate: 1.0e-08
+    learning_rates:
+    - 0.001
+    - 0.0001
+    - 1.0e-05
+    - 1.0e-06
+    - 1.0e-07
+    early_stopping_patience: 50
+    scheduler_patience: 25
+    performance_tolerance: 0.001
+    verbose: ${verbose}
+    verbose_batch: 0
+    device: cuda
+  initializer:
+    name: xavier_uniform
+    params:
+      gain: 1.0
+  loss:
+    CE:
+      name: cross_entropy
+      init_params:
+        _target_: torch.nn.CrossEntropyLoss
+      set_params_function:
+        _target_: CMC_utils.miscellaneous.do_nothing
+      alpha: 1
+  regularizer:
+    l1:
+      name: l1
+      init_params:
+        _target_: CMC_utils.regularizers.L1RegularizationLoss
+      alpha: 0.0001
+    l2:
+      name: l2
+      init_params:
+        _target_: CMC_utils.regularizers.L2RegularizationLoss
+      alpha: 0.0001
+    iam:
+      init_params:
+        _target_: CMC_utils.models.tabular.naim.imbalance_masking.ImbalanceAwareMasking
+        p_majority: 0.1
+        p_minority: 0.05
+        majority_labels: 0
+        minority_labels: 1
+  optimizer:
+    name: adam
+    init:
+      _target_: torch.optim.Adam
+      betas:
+      - 0.9
+      - 0.999
+      eps: 1.0e-08
+      weight_decay: 0
+      amsgrad: false
+      foreach: null
+      maximize: false
+      capturable: false
+  manager:
+    _target_: CMC_utils.models.TrainManager
+    min_epochs: ${dl_params.min_epochs}
+    max_epochs: ${dl_params.max_epochs}
+    performance_tolerance: ${dl_params.performance_tolerance}
+    device: ${dl_params.device}
+    verbose: ${verbose}
+    verbose_batch: ${dl_params.verbose_batch}
+    early_stop:
+      _target_: CMC_utils.models.EarlyStopper
+      patience: ${dl_params.early_stopping_patience}
+      min_epochs: ${dl_params.min_epochs}
+    model_checkpoint:
+      _target_: CMC_utils.models.ModelCheckpointer
+    scheduler:
+      _target_: CMC_utils.models.CustomScheduler
+      learning_rates: ${dl_params.learning_rates}
+      patience: ${dl_params.scheduler_patience}
+      verbose: ${verbose}
+      min_epochs: ${dl_params.min_epochs}
+  set_metrics:
+    macro_f1:
+      name: macro_f1
+      init:
+        _target_: CMC_utils.metrics.classification_metrics.macro_f1
+        average: macro
+      set_params_function: CMC_utils.miscellaneous.do_nothing
+performance_metrics:
+  macro_f1:
+    name: macro_f1
+    init:
+      _target_: CMC_utils.metrics.classification_metrics.macro_f1
+      average: macro
+    set_params_function: CMC_utils.miscellaneous.do_nothing
+  g_mean:
+    name: g_mean
+    init:
+      _target_: CMC_utils.metrics.classification_metrics.g_mean
+    set_params_function: CMC_utils.miscellaneous.do_nothing
+  auc:
+    name: auc
+    init:
+      _target_: CMC_utils.metrics.AUC
+      average: macro
+      multi_class: ovr
+    set_params_function: CMC_utils.miscellaneous.do_nothing
+  accuracy:
+    name: accuracy
+    init:
+      _target_: CMC_utils.metrics.accuracy
+      normalize: true
+      sample_weight: null
+    set_params_function: CMC_utils.miscellaneous.do_nothing
+hydra:
+  job:
+    name: ${experiment_name}
+    chdir: false
+  run:
+    dir: ${output_path}/${hydra.job.name}
+  sweep:
+    dir: ${output_path}/${hydra.job.name}
+    subdir: ''

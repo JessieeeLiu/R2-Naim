@@ -1,0 +1,14 @@
+params,values
+method,normalize
+numerical_columns,"['radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean', 'smoothness_mean', 'compactness_mean', 'concavity_mean', 'concave_points_mean', 'symmetry_mean', 'fractal_dimension_mean', 'radius_se', 'texture_se', 'perimeter_se', 'area_se', 'smoothness_se', 'compactness_se', 'concavity_se', 'concave_points_se', 'symmetry_se', 'fractal_dimension_se', 'radius_worst', 'texture_worst', 'perimeter_worst', 'area_worst', 'smoothness_worst', 'compactness_worst', 'concavity_worst', 'concave_points_worst', 'symmetry_worst', 'fractal_dimension_worst']"
+max_,"[[2.811e+01, 3.928e+01, 1.885e+02, 2.499e+03, 1.634e-01, 3.454e-01,
+  4.268e-01, 2.012e-01, 2.906e-01, 9.575e-02, 2.873e+00, 3.896e+00,
+  2.198e+01, 5.256e+02, 3.113e-02, 1.354e-01, 1.535e-01, 4.090e-02,
+  7.895e-02, 2.286e-02, 3.312e+01, 4.954e+01, 2.208e+02, 3.432e+03,
+  2.226e-01, 1.058e+00, 1.105e+00, 2.910e-01, 5.558e-01, 2.075e-01]]"
+min_,"[[6.981e+00, 1.038e+01, 4.379e+01, 1.435e+02, 6.576e-02, 3.116e-02,
+  0.000e+00, 0.000e+00, 1.060e-01, 5.024e-02, 1.115e-01, 3.602e-01,
+  8.484e-01, 6.802e+00, 2.667e-03, 3.012e-03, 0.000e+00, 0.000e+00,
+  9.947e-03, 8.948e-04, 7.930e+00, 1.249e+01, 5.041e+01, 1.852e+02,
+  8.484e-02, 4.619e-02, 0.000e+00, 0.000e+00, 1.566e-01, 5.525e-02]]"
+axis,0

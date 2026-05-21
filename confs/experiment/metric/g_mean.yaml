@@ -1,0 +1,6 @@
+name: g_mean
+init:
+  _target_: CMC_utils.metrics.classification_metrics.g_mean
+  # g_mean 没有额外的初始化参数
+ 
+set_params_function: CMC_utils.miscellaneous.do_nothing

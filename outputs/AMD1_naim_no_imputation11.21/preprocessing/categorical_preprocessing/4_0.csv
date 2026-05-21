@@ -1,0 +1,5 @@
+params,values
+method,categorical_encode
+unique_values,"{'gender': [1, 2], 'race': [1, 2, 3, 4, 5], 'Educational Level': [1, 2, 3, 4, 5]}"
+nan_as_category,False
+fill_value,

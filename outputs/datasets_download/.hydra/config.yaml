@@ -1,0 +1,224 @@
+data_path: ./datasets
+output_path: ./outputs
+experiment_name: datasets_download
+dbs:
+  adult:
+    _target_: CMC_utils.datasets.ClassificationDataset
+    _convert_: all
+    name: adult
+    db_type: tabular
+    classes:
+    - <=50K
+    - '>50K'
+    label_type: multiclass
+    task: classification
+    path: ${data_path}/tabular/classification/adult/adult.data
+    columns:
+      age: int
+      workclass: category
+      fnlwgt: int
+      education: category
+      education-num: int
+      marital-status: category
+      occupation: category
+      relationship: category
+      race: category
+      sex: category
+      capital-gain: int
+      capital-loss: int
+      hours-per-week: int
+      native-country: category
+      income: target
+    pandas_load_kwargs:
+      na_values:
+      - ' ?'
+      header: null
+    dataset_class:
+      _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch
+      _convert_: all
+  bankmarketing:
+    _target_: CMC_utils.datasets.ClassificationDataset
+    _convert_: all
+    name: bankmarketing
+    db_type: tabular
+    classes:
+    - 'no'
+    - 'yes'
+    label_type: multiclass
+    task: classification
+    path: ${data_path}/tabular/classification/bankmarketing/bank-additional-full.csv
+    columns:
+      age: int
+      job: category
+      marital: category
+      education: category
+      default: category
+      housing: category
+      loan: category
+      contact: category
+      month: category
+      day_of_week: category
+      duration: float
+      campaign: float
+      pdays: float
+      previous: float
+      poutcome: category
+      emp.var.rate: float
+      cons.price.idx: float
+      cons.conf.idx: float
+      euribor3m: float
+      nr.employed: float
+      'y': target
+    pandas_load_kwargs:
+      header: 0
+      sep: ;
+    dataset_class:
+      _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch
+      _convert_: all
+  onlineshoppers:
+    _target_: CMC_utils.datasets.ClassificationDataset
+    _convert_: all
+    name: onlineshoppers
+    db_type: tabular
+    classes:
+    - false
+    - true
+    label_type: multiclass
+    task: classification
+    path: ${data_path}/tabular/classification/onlineshoppers/online_shoppers_intention.csv
+    columns:
+      Administrative: int
+      Administrative_Duration: float
+      Informational: int
+      Informational_Duration: float
+      ProductRelated: int
+      ProductRelated_Duration: float
+      BounceRates: float
+      ExitRates: float
+      PageValues: float
+      SpecialDay: float
+      Month: category
+      OperatingSystems: category
+      Browser: category
+      Region: category
+      TrafficType: category
+      VisitorType: category
+      Weekend: category
+      Revenue: target
+    pandas_load_kwargs:
+      header: 0
+    dataset_class:
+      _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch
+      _convert_: all
+  seismicbumps:
+    _target_: CMC_utils.datasets.ClassificationDataset
+    _convert_: all
+    name: seismicbumps
+    db_type: tabular
+    classes:
+    - 0
+    - 1
+    label_type: multiclass
+    task: classification
+    path: ${data_path}/tabular/classification/seismicbumps/seismic-bumps.arff
+    columns:
+      seismic: category
+      seismoacoustic: category
+      shift: category
+      genergy: float
+      gpuls: float
+      gdenergy: float
+      gdpuls: float
+      ghazard: category
+      nbumps: float
+      nbumps2: float
+      nbumps3: float
+      nbumps4: float
+      nbumps5: float
+      nbumps6: float
+      nbumps7: float
+      nbumps89: float
+      energy: float
+      maxenergy: float
+      Class: target
+    pandas_load_kwargs:
+      skiprows: 154
+      header: null
+    dataset_class:
+      _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch
+      _convert_: all
+  spambase:
+    _target_: CMC_utils.datasets.ClassificationDataset
+    _convert_: all
+    name: spambase
+    db_type: tabular
+    classes:
+    - 0
+    - 1
+    label_type: multiclass
+    task: classification
+    path: ${data_path}/tabular/classification/spambase/spambase.data
+    columns:
+      word_freq_make: float
+      word_freq_address: float
+      word_freq_all: float
+      word_freq_3d: float
+      word_freq_our: float
+      word_freq_over: float
+      word_freq_remove: float
+      word_freq_internet: float
+      word_freq_order: float
+      word_freq_mail: float
+      word_freq_receive: float
+      word_freq_will: float
+      word_freq_people: float
+      word_freq_report: float
+      word_freq_addresses: float
+      word_freq_free: float
+      word_freq_business: float
+      word_freq_email: float
+      word_freq_you: float
+      word_freq_credit: float
+      word_freq_your: float
+      word_freq_font: float
+      word_freq_000: float
+      word_freq_money: float
+      word_freq_hp: float
+      word_freq_hpl: float
+      word_freq_george: float
+      word_freq_650: float
+      word_freq_lab: float
+      word_freq_labs: float
+      word_freq_telnet: float
+      word_freq_857: float
+      word_freq_data: float
+      word_freq_415: float
+      word_freq_85: float
+      word_freq_technology: float
+      word_freq_1999: float
+      word_freq_parts: float
+      word_freq_pm: float
+      word_freq_direct: float
+      word_freq_cs: float
+      word_freq_meeting: float
+      word_freq_original: float
+      word_freq_project: float
+      word_freq_re: float
+      word_freq_edu: float
+      word_freq_table: float
+      word_freq_conference: float
+      char_freq_;: float
+      char_freq_(: float
+      char_freq_[: float
+      char_freq_!: float
+      char_freq_$: float
+      char_freq_#: float
+      capital_run_length_average: float
+      capital_run_length_longest: float
+      capital_run_length_total: float
+      Class: target
+    pandas_load_kwargs:
+      header: null
+    dataset_class:
+      _target_: CMC_utils.datasets.SupervisedTabularDatasetTorch
+      _convert_: all

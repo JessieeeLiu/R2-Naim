@@ -1,0 +1,7 @@
+params,values
+method,normalize
+numerical_columns,"['genergy', 'gpuls', 'gdenergy', 'gdpuls', 'nbumps', 'nbumps2', 'nbumps3', 'nbumps4', 'nbumps5', 'nbumps6', 'nbumps7', 'nbumps89', 'energy', 'maxenergy']"
+max_,"[[2595650,    4365,    1245,     838,       9,       5,       7,       3,
+        1,       0,       0,       0,  402000,  400000]]"
+min_,"[[100,   3, -96, -96,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0]]"
+axis,0

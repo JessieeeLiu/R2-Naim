@@ -1,0 +1,9 @@
+init_params:
+  _target_: CMC_utils.models.tabular.naim.imbalance_masking.DynamicImbalanceAwareMasking
+  min_p_majority: 0.0
+  max_p_majority: 0.3
+  min_p_minority: 0.0
+  max_p_minority: 0.1
+  majority_labels: 0
+  minority_labels: 1
+  ramp_up_epochs: 100

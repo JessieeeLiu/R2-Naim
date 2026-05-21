@@ -1,0 +1,6 @@
+params,values
+method,normalize
+numerical_columns,"['age', 'fnlwgt', 'education-num', 'capital-gain', 'capital-loss', 'hours-per-week']"
+max_,"[[     90, 1490400,      16,   99999,    4356,      99]]"
+min_,"[[   17, 12285,     1,     0,     0,     1]]"
+axis,0

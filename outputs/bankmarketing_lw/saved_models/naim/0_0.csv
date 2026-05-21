@@ -1,0 +1,23 @@
+params,values
+_target_,CMC_utils.models.NAIM
+_convert_,all
+input_size,20
+output_size,2
+cat_idxs,"[1, 2, 3, 4, 5, 6, 7, 8, 9, 14]"
+cat_dims,"[12, 4, 8, 3, 3, 3, 2, 10, 5, 3]"
+d_token,6
+embedder_initialization,normal
+bias,False
+mask_type,2
+missing_value,~inf
+num_heads,3
+feedforward_dim,1000
+dropout_rate,0.0
+activation,relu
+num_layers,6
+extractor,False
+best_epoch,55
+best_loss,0.35432153896786195
+best_performance,0.764
+last_epoch,106
+early_stop,True

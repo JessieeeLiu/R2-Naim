@@ -1,0 +1,4 @@
+set,class,macro_f1,macro_f1,macro_f1,macro_f1,g_mean,g_mean,g_mean,g_mean,auc,auc,auc,auc,accuracy,accuracy,accuracy,accuracy
+,,mean,std,min,max,mean,std,min,max,mean,std,min,max,mean,std,min,max
+val,0,61.01,1.9,59.07,63.51,65.46,3.55,61.8,70.28,75.34,1.98,72.98,78.27,83.89,2.85,80.25,87.65
+val,1,61.01,1.9,59.07,63.51,65.46,3.55,61.8,70.28,75.34,1.98,72.98,78.27,83.89,2.85,80.25,87.65

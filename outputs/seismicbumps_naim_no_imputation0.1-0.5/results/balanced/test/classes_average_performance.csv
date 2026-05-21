@@ -1,0 +1,4 @@
+set,class,macro_f1,macro_f1,macro_f1,macro_f1,g_mean,g_mean,g_mean,g_mean,auc,auc,auc,auc,accuracy,accuracy,accuracy,accuracy
+,,mean,std,min,max,mean,std,min,max,mean,std,min,max,mean,std,min,max
+test,0,58.65,2.41,55.99,62.17,68.27,3.53,65.21,74.02,76.05,3.96,72.35,82.61,69.6,3.06,66.64,74.69
+test,1,58.65,2.41,55.99,62.17,68.27,3.53,65.21,74.02,76.05,3.96,72.35,82.61,69.6,3.06,66.64,74.69

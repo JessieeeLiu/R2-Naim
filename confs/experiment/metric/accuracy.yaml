@@ -1,0 +1,7 @@
+name: accuracy
+init:
+  _target_: CMC_utils.metrics.accuracy
+  normalize: True
+  sample_weight:
+
+set_params_function: CMC_utils.miscellaneous.do_nothing

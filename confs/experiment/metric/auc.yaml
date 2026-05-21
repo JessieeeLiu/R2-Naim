@@ -1,0 +1,8 @@
+name: auc
+init:
+  _target_: CMC_utils.metrics.AUC
+  average: macro 
+  multi_class: ovr
+ 
+
+set_params_function: CMC_utils.miscellaneous.do_nothing

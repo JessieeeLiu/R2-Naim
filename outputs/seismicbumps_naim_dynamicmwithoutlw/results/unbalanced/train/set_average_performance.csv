@@ -1,0 +1,3 @@
+set,macro_f1,macro_f1,macro_f1,macro_f1,g_mean,g_mean,g_mean,g_mean,auc,auc,auc,auc,accuracy,accuracy,accuracy,accuracy
+,mean,std,min,max,mean,std,min,max,mean,std,min,max,mean,std,min,max
+train,58.54,2.61,55.8,62.48,38.54,5.07,32.83,46.4,74.07,2.12,71.99,77.13,92.43,0.36,92.01,92.86
